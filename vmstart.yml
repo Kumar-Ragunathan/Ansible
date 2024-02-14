@@ -11,8 +11,8 @@
     - name: guest start
       vmware_guest_powerstate:
         hostname: "stg-m01-vc01.stg.local"
-        username: "administrator@vsphere.local"
-        password: "VxRai7$$2021!!"
+        username: "asdfda@vsphere.local"
+        password: "asdfasdfasf"
         validate_certs: false
         name: "{{ vm_name }}"
         state: powered-on
@@ -22,8 +22,8 @@
     - name: poweron
       vmware_guest_powerstate:
         hostname: "stg-m01-vc01.stg.local"
-        username: "administrator@vsphere.local"
-        password: "VxRai7$$2021!!"
+        username: "adsfad@vsphere.local"
+        password: "adsfadsf"
         validate_certs: false
         name: "{{ vm_name }}"
         state: powered-on
