@@ -11,8 +11,8 @@
     - name: guest shutdown
       vmware_guest_powerstate:
         hostname: "stg-m01-vc01.stg.local"
-        username: "administrator@vsphere.local"
-        password: "VxRai7$$2021!!"
+        username: "adfa@vsphere.local"
+        password: "adfadf$$adsfadf!!"
         validate_certs: false
         name: "{{ host_group }}"
         state: shutdown-guest
@@ -22,8 +22,8 @@
     - name: poweroff
       vmware_guest_powerstate:
         hostname: "stg-m01-vc01.stg.local"
-        username: "administrator@vsphere.local"
-        password: "VxRai7$$2021!!"
+        username: "asdfasd@vsphere.local"
+        password: "adsf!!"
         validate_certs: false
         name: "{{ host_group }}"
         state: powered-off
