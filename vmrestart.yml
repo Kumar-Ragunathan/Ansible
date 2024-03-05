@@ -12,7 +12,7 @@
       vmware_guest_powerstate:
         hostname: "stg-m01-vc01.stg.local"
         username: "administrator@vsphere.local"
-        password: "VxRai7$$2021!!"
+        password: ""
         validate_certs: false
         name: "{{ vm_name }}"
         state: reboot-guest
