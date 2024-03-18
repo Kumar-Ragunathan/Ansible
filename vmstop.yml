@@ -10,9 +10,9 @@
   tasks:
     - name: guest shutdown
       vmware_guest_powerstate:
-        hostname: "stg-m01-vc01.stg.local"
-        username: "adfa@vsphere.local"
-        password: "adfadf$$adsfadf!!"
+        hostname: "{{ vC }}"
+        username: "{{ vCuser }}"
+        password: "{{ vCpwd }}"
         validate_certs: false
         name: "{{ host_group }}"
         state: shutdown-guest
@@ -21,9 +21,9 @@
       ignore_errors: true
     - name: poweroff
       vmware_guest_powerstate:
-        hostname: "stg-m01-vc01.stg.local"
-        username: "asdfasd@vsphere.local"
-        password: "adsf!!"
+        hostname: "{{ vC }}"
+        username: "{{ vCuser }}"
+        password: "{{ vCpwd }}"
         validate_certs: false
         name: "{{ host_group }}"
         state: powered-off
