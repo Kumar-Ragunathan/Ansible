@@ -10,9 +10,9 @@
   tasks:
     - name: guest reboot
       vmware_guest_powerstate:
-        hostname: "stg-m01-vc01.stg.local"
-        username: "administrator@vsphere.local"
-        password: ""
+        hostname: "{{ vC }}"
+        username: "{{ vCuser }}"
+        password: "{{ vCpwd }}"
         validate_certs: false
         name: "{{ vm_name }}"
         state: reboot-guest
@@ -21,9 +21,9 @@
       ignore_errors: true
     - name: reboot
       vmware_guest_powerstate:
-        hostname: "stg-m01-vc01.stg.local"
-        username: "administrator@vsphere.local"
-        password: "VxRai7$$2021!!"
+        hostname: "{{ vC }}"
+        username: "{{ vCuser }}"
+        password: "{{ vCpwd }}"
         validate_certs: false
         name: "{{ vm_name }}"
         state: reboot-guest
