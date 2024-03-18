@@ -1,0 +1,59 @@
+---
+- name: Setup PostgreSQL replica
+  hosts: replica_servers
+  become: true
+  vars:
+    primary_host: "{{ primary_host }}"
+    primary_user: "{{ primary_user }}"
+    primary_password: "{{ primary_password }}"
+    replica_data_directory: "/var/lib/postgresql/12/main"
+
+  tasks:
+    - name: Install PostgreSQL packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - postgresql
+        - postgresql-contrib
+
+    - name: Stop PostgreSQL service
+      systemd:
+        name: postgresql
+        state: stopped
+
+    - name: Remove replica data directory
+      file:
+        path: "{{ replica_data_directory }}"
+        state: absent
+
+    - name: Create replica data directory
+      file:
+        path: "{{ replica_data_directory }}"
+        state: directory
+        owner: postgres
+        group: postgres
+        mode: '0700'
+
+    - name: Clone data from primary server
+      command: rsync -avz --exclude=pg_xlog --exclude=pg_wal --exclude=postmaster.pid --exclude=*.conf --exclude=recovery.conf postgres@{{ primary_host }}:/var/lib/postgresql/12/main/ {{ replica_data_directory }}/ # Replace 12 with your PostgreSQL version
+      args:
+        creates: "{{ replica_data_directory }}/PG_VERSION"
+      become_user: postgres
+
+    - name: Configure recovery.conf
+      template:
+        src: recovery.conf.j2
+        dest: "{{ replica_data_directory }}/recovery.conf"
+        owner: postgres
+        group: postgres
+        mode: '0600'
+      vars:
+        primary_host: "{{ primary_host }}"
+        primary_user: "{{ primary_user }}"
+        primary_password: "{{ primary_password }}"
+
+    - name: Start PostgreSQL service
+      systemd:
+        name: postgresql
+        state: started
