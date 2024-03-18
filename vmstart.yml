@@ -10,9 +10,9 @@
   tasks:
     - name: guest start
       vmware_guest_powerstate:
-        hostname: "stg-m01-vc01.stg.local"
-        username: "asdfda@vsphere.local"
-        password: "asdfasdfasf"
+        hostname: "{{ vC }}"
+        username: "{{ vCuser }}"
+        password: "{{ vCpwd }}"
         validate_certs: false
         name: "{{ vm_name }}"
         state: powered-on
@@ -21,9 +21,9 @@
       ignore_errors: true
     - name: poweron
       vmware_guest_powerstate:
-        hostname: "stg-m01-vc01.stg.local"
-        username: "adsfad@vsphere.local"
-        password: "adsfadsf"
+        hostname: "{{ vC }}"
+        username: "{{ vCuser }}"
+        password: "{{ vCpwd }}"
         validate_certs: false
         name: "{{ vm_name }}"
         state: powered-on
