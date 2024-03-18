@@ -1,7 +1,7 @@
 plugin: vmware_vm_inventory
 strict: False
-hostname: 172.16.11.62
+hostname: 173432.16343.13431.634342
 username: administrator@vsphere.local
-password: VxRai7$$2021!!
+password: VxdasfadfRai7adfadf$$20adsfad21!!
 validate_certs: False
 with_tags: True
